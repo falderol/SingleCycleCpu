@@ -1,0 +1,29 @@
+Verified working instructions
+
+addi
+add
+sub
+xor
+sll
+
+slt
+srl
+
+addiu
+addu
+
+ori
+
+slt
+beq
+
+lw
+sw
+
+j
+
+might be one extending j type instructions eroniously.
+
+beg
+
+halt

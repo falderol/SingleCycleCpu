@@ -1,0 +1,109 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY MUX_32x1_raw IS
+    PORT (I00, I01, I02, I03, I04, I05, I06, I07, I08, I09, I10, I11, I12, I13,
+          I14, I15, I16, I17, I18, I19, I20, I21, I22, I23, I24, I25, I26, I27,
+          I28, I29, I30, I31, S0, S1, S2, S3, S4: IN STD_LOGIC;
+          output: OUT STD_LOGIC);
+END MUX_32x1_raw;
+
+--Maximum of 4 terms and one type per statement.
+ARCHITECTURE logic OF MUX_32x1_raw IS
+    SIGNAL NS0, NS1, NS2, NS3, NS4, O00, O01, O02, O03, O04, O05, O06, O07, O08,
+           O09, O10, O11, O12, O13, O14, O15, O16, O17, O18, O19, O20, O21, O22,
+           O23, O24, O25, O26, O27, O28, O29, O30, O31, O32, O33, O34, O35, O36,
+           O37, O38, O39, O40, O41, O42, O43, O44, O45, O46, O47, O48, O49
+           : STD_LOGIC;
+BEGIN
+--Not-ed selection signals
+    NS0 <= NOT S0 AFTER 5 ps;
+    NS1 <= NOT S1 AFTER 5 ps;
+    NS2 <= NOT S2 AFTER 5 ps;
+    NS3 <= NOT S3 AFTER 5 ps;
+    NS4 <= NOT S4 After 5 ps;
+
+--Layer 1
+    O00 <= S3  AND S4  AND I00 AFTER 5 ps;
+    O01 <= S3  AND NS4 AND I01 AFTER 5 ps;
+    O02 <= NS3 AND S4  AND I02 AFTER 5 ps;
+    O03 <= NS3 AND NS4 AND I03 AFTER 5 ps;
+
+    O04 <= S3  AND S4  AND I04 AFTER 5 ps;
+    O05 <= S3  AND NS4 AND I05 AFTER 5 ps;
+    O06 <= NS3 AND S4  AND I06 AFTER 5 ps;
+    O07 <= NS3 AND NS4 AND I07 AFTER 5 ps;
+
+    O08 <= S3  AND S4  AND I08 AFTER 5 ps;
+    O09 <= S3  AND NS4 AND I09 AFTER 5 ps;
+    O10 <= NS3 AND S4  AND I10 AFTER 5 ps;
+    O11 <= NS3 AND NS4 AND I11 AFTER 5 ps;
+
+    O12 <= S3  AND S4  AND I12 AFTER 5 ps;
+    O13 <= S3  AND NS4 AND I13 AFTER 5 ps;
+    O14 <= NS3 AND S4  AND I14 AFTER 5 ps;
+    O15 <= NS3 AND NS4 AND I15 AFTER 5 ps;
+
+    O16 <= S3  AND S4  AND I16 AFTER 5 ps;
+    O17 <= S3  AND NS4 AND I17 AFTER 5 ps;
+    O18 <= NS3 AND S4  AND I18 AFTER 5 ps;
+    O19 <= NS3 AND NS4 AND I19 AFTER 5 ps;
+
+    O20 <= S3  AND S4  AND I20 AFTER 5 ps;
+    O21 <= S3  AND NS4 AND I21 AFTER 5 ps;
+    O22 <= NS3 AND S4  AND I22 AFTER 5 ps;
+    O23 <= NS3 AND NS4 AND I23 AFTER 5 ps;
+
+    O24 <= S3  AND S4  AND I24 AFTER 5 ps;
+    O25 <= S3  AND NS4 AND I25 AFTER 5 ps;
+    O26 <= NS3 AND S4  AND I26 AFTER 5 ps;
+    O27 <= NS3 AND NS4 AND I27 AFTER 5 ps;
+
+    O28 <= S3  AND S4  AND I28 AFTER 5 ps;
+    O29 <= S3  AND NS4 AND I29 AFTER 5 ps;
+    O30 <= NS3 AND S4  AND I30 AFTER 5 ps;
+    O31 <= NS3 AND NS4 AND I31 AFTER 5 ps;
+    
+--Layer 2
+    O32 <= O00 OR O01 OR O02 OR O03 AFTER 5 ps;
+
+    O33 <= O04 OR O05 OR O06 OR O07 AFTER 5 ps;
+
+    O34 <= O08 OR O09 OR O10 OR O11 AFTER 5 ps;
+
+    O35 <= O12 OR O13 OR O14 OR O15 AFTER 5 ps;
+
+    O36 <= O16 OR O17 OR O18 OR O19 AFTER 5 ps;
+
+    O37 <= O20 OR O21 OR O22 OR O23 AFTER 5 ps;
+
+    O38 <= O24 OR O25 OR O26 OR O27 AFTER 5 ps;
+
+    O39 <= O28 OR O29 OR O30 OR O31 AFTER 5 ps;
+
+--Layer 3
+    O40 <= O32 AND S0  AND S1  AND S2  AFTER 5 ps;
+
+    O41 <= O33 AND S0  AND S1  AND NS2 AFTER 5 ps;
+
+    O42 <= O34 AND S0  AND NS1 AND S2  AFTER 5 ps;
+
+    O43 <= O35 AND S0  AND NS1 AND NS2 AFTER 5 ps;
+
+    O44 <= O36 AND NS0 AND S1  AND S2  AFTER 5 ps;
+
+    O45 <= O37 AND NS0 AND S1  AND NS2 AFTER 5 ps;
+
+    O46 <= O38 AND NS0 AND NS1 AND S2  AFTER 5 ps;
+
+    O47 <= O39 AND NS0 AND NS1 AND NS2 AFTER 5 ps;
+--First Or-ing
+    O48 <= O40 OR O41 OR O42 OR O43 AFTER 5 ps;
+
+    O49 <= O44 OR O45 OR O46 OR O47 AFTER 5 ps;
+
+--Second Or-ing
+    output <= O48 OR O49 AFTER 5 pS;
+
+END logic;
+

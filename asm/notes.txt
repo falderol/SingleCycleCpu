@@ -1,0 +1,20 @@
+ALl the files should write to I/O. In this sytem the memory adress 0xFFFC is written to it will display the least significvant byte as a charecter on the screen. When 0xFF8 is read from a word whose lease significant byte is the ASCII representation of the next chareter in the keyboard buffer will be read.
+Suported instructions include
+add,   R type, R[Rs] + R[Rt] into R[Rd]
+addu,  R type, R[Rs] + R[Rt] into R[Rd], treats operation as unsigned
+addi,  I type, R[Rs] + S into R[Rt]
+addiu, I type, R[Rs] + Z into R[Rt]
+beq,   I type, PC + 4 + (S << 2) into PC if R[Rs] equals R[Rt]
+halt,  J type, all opcode 1. Stops the clock
+j,     J type, replace 28 least significant bits of PC with (A << 2)
+jal,   J type, replace 28 least significant bits of PC with (A << 2), store PC + 4 into R[31]
+jr,    J type, stores R[Rs} in PC
+lw,    I type, loads M[R[Rs] + S] into R[Rt]
+nor,   R type, places !(R[Rs] or R[Rt]) into R[Rd]
+ssl,   R type, R[Rs] << F into R[Rd]
+ssl,   R type, R[Rs] >> F into R[Rd]
+slt,   R type, (R[Rs] < R[Rt]) : 1 ? 0 into R[Rd]
+sub,   R type, R[Rs] - R[Rt] into R[Rd]
+sw,    I type, R[Rt] into M[R[Rs] +S]
+ori,   I type, R[Rs] or Z into R[Rt]
+xor,   R type, R[Rs] xor R[Rt] into R[Rd]
